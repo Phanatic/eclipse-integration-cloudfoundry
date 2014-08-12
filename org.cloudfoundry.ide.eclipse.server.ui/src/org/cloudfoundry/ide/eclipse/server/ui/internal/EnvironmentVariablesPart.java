@@ -90,8 +90,7 @@ public class EnvironmentVariablesPart extends UIPart {
 		Listener actionEnabler =  new Listener() {
 			@Override
 			 public void handleEvent(Event event) {
-			     removeEnvVarButton.setEnabled(isDeleteEnabled());
-			     editEnvVarButton.setEnabled(isEditEnabled());
+				setEnabledDisabled();
 			  }
 			 }; 
 			
@@ -138,6 +137,11 @@ public class EnvironmentVariablesPart extends UIPart {
 
 		AddEditButtons(parent);
 		return tableArea;
+	}
+
+	private void setEnabledDisabled() {
+		removeEnvVarButton.setEnabled(isDeleteEnabled());
+	    editEnvVarButton.setEnabled(isEditEnabled());
 	}
 	
 	private void AddEditButtons(Composite parent){
@@ -223,6 +227,7 @@ public class EnvironmentVariablesPart extends UIPart {
 		
 		if (variableChanged) {
 			notifyStatusChange(Status.OK_STATUS);
+			setEnabledDisabled();
 		}
 	}
 
@@ -237,6 +242,7 @@ public class EnvironmentVariablesPart extends UIPart {
 		
 		if (variableChanged) {
 			notifyStatusChange(Status.OK_STATUS);
+			setEnabledDisabled();
 		}
 	}
 
